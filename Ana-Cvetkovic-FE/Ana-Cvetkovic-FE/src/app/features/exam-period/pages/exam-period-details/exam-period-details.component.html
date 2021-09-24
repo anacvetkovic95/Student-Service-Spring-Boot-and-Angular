@@ -1,0 +1,26 @@
+<a routerLink="/exam-period/exam-period-list" style="font-size: x-large;">Back to list</a>
+
+<div class="d-flex flex-column mt-3">
+
+  <div class="col-lg-6 col-md-8 border border-primary p-2 rounded">
+    <h3>Exam period Details</h3>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Exam period name: {{examPeriod.name}}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Exam period active: {{examPeriod.active}}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Exam period start: {{examPeriod.startPeriod | date }}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Exam period end: {{examPeriod.endPeriod | date }}
+      </span>
+    </div>
+
+  </div>
+
+</div>

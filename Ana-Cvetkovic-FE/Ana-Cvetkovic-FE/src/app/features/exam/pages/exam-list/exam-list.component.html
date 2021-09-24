@@ -1,0 +1,42 @@
+<h3>List of exams</h3>
+
+<div class="table-top d-flex justify-content-end align-items-center">
+  <button type="button" class="btn btn-info" (click)="openNewExamForm()">Add new exam</button>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" sortable="id" (sort)="onSort($event)">Id</th>
+        <th scope="col" sortable="examPeriod" (sort)="onSort($event)">Exam period</th>
+        <th scope="col" sortable="subject" (sort)="onSort($event)">Subject</th>
+        <th scope="col" sortable="professor" (sort)="onSort($event)">Professor</th>
+        <th scope="col" sortable="examDate" (sort)="onSort($event)">Exam date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of exams">
+        <td>{{ exam.id }}</td>
+        <td>{{ exam.examPeriod.name }}</td>
+        <td>{{ exam.subject.name }}</td>
+        <td>{{ exam.professor.firstName }} {{ exam.professor.lastName }}</td>
+        <td>{{ exam.examDate | date}}</td>
+        <td>
+          <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-outline-success" [routerLink]="['../exam-details', exam.id]">
+              <i class="bi bi-eye-fill"></i> Details
+            </button>
+            <button class="btn btn-outline-primary" [routerLink]="['../exam-form', exam.id]">
+              <i class="bi bi-pencil-fill"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger" (click)="onDeleteClick(exam)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,41 @@
+<h3>List of exam periods</h3>
+
+<div class="table-top d-flex justify-content-end align-items-center">
+  <button type="button" class="btn btn-info" (click)="openNewExamPeriodForm()">Add new exam period</button>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" sortable="id" (sort)="onSort($event)">Id</th>
+        <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+        <th scope="col" sortable="startPeriod" (sort)="onSort($event)">Start period</th>
+        <th scope="col" sortable="endPeriod" (sort)="onSort($event)">End period</th>
+        <th scope="col" sortable="active" (sort)="onSort($event)">Active</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let examPeriod of examPeriods">
+        <td>{{ examPeriod.id }}</td>
+        <td>{{ examPeriod.name }}</td>
+        <td>{{ examPeriod.startPeriod | date }}</td>
+        <td>{{ examPeriod.endPeriod | date }}</td>
+        <td>{{ examPeriod.active }}</td>
+        <td>
+          <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-outline-success" [routerLink]="['../exam-period-details', examPeriod.id]">
+              <i class="bi bi-eye-fill"></i> Details
+            </button>
+            <button class="btn btn-outline-primary" [routerLink]="['../exam-period-form', examPeriod.id]">
+              <i class="bi bi-pencil-fill"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger" (click)="onDeleteClick(examPeriod)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

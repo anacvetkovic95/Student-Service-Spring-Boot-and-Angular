@@ -1,0 +1,62 @@
+<h3>List of professors</h3>
+
+<div class="table-top d-flex justify-content-between align-items-center">
+  <div class="select-options">
+    <span class="mr-2">Items per page:</span>
+    <select [(ngModel)]="pageSize" (change)="onPageChange($event)">
+      <option *ngFor="let o of options" [ngValue]="o">
+        {{o}}
+      </option>
+    </select>
+  </div>
+  <button type="button" class="btn btn-info" (click)="openNewProfessorForm()">Add new professor</button>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" sortable="id" (sort)="onSort($event)">Id</th>
+        <th scope="col" sortable="adress" (sort)="onSort($event)">Adress</th>
+        <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+        <th scope="col" sortable="firstName" (sort)="onSort($event)">First name</th>
+        <th scope="col" sortable="lastName" (sort)="onSort($event)">Last name</th>
+        <th scope="col" sortable="reelectionDate" (sort)="onSort($event)">Reelection date</th>
+        <th scope="col">Postal code</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Title</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let professor of professors">
+        <td>{{ professor.id }}</td>
+        <td>{{ professor.adress }}</td>
+        <td>{{ professor.email }}</td>
+        <td>{{ professor.firstName }}</td>
+        <td>{{ professor.lastName }}</td>
+        <td>{{ professor.reelectionDate | date }}</td>
+        <td>{{ professor.city.cityCode}}</td>
+        <td>{{ professor.phone}}</td>
+        <td>{{ professor.title.name}}</td>
+        <td>
+          <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-outline-success" [routerLink]="['../professor-details', professor.id]">
+              <i class="bi bi-eye-fill"></i> Details
+            </button>
+            <button class="btn btn-outline-primary" [routerLink]="['../professor-form', professor.id]">
+              <i class="bi bi-pencil-fill"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger" (click)="onDeleteClick(professor)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ngb-pagination [collectionSize]="totalItems" (pageChange)="onPageChange($event)" [(page)]="currentPage"
+  [pageSize]="pageSize" [boundaryLinks]="true">
+</ngb-pagination>

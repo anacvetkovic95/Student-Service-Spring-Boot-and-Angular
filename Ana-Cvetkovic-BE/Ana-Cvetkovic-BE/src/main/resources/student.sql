@@ -1,0 +1,4 @@
+INSERT INTO student(adress,current_year_of_study,email,first_name, index_number, last_name, postal_code, index_year) VALUES("Adress - 1",4,"studentOne@email.com","Marica", 1057, "Maric", 11000, 2015);
+INSERT INTO student(adress,current_year_of_study,email,first_name, index_number, last_name, postal_code, index_year) VALUES("Adress - 2",3,"studentTwo@email.com","Novak", 0001, "Djokovic", 11000, 2016);
+INSERT INTO student(adress,current_year_of_study,email,first_name, index_number, last_name, postal_code, index_year) VALUES("Adress - 3",2,"studentThree@email.com","Branimir", 1020, "Kamber", 13000, 2019);
+INSERT INTO student(adress,current_year_of_study,email,first_name, index_number, last_name, postal_code, index_year) VALUES("Adress - 4",1,"studentFour@email.com","Ivan", 1057, "Jovkovic", 13000, 2020);

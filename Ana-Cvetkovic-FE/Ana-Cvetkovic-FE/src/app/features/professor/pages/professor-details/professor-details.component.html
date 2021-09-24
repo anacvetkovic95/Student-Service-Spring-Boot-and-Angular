@@ -1,0 +1,29 @@
+<a routerLink="/professor/professor-list" style="font-size: x-large;">Back to list</a>
+
+<div class="d-flex flex-column mt-3">
+
+  <div class="col-lg-6 col-md-8 border border-primary p-2 rounded">
+    <h3>Professor Details</h3>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Professor name: {{professor.firstName}} {{professor.lastName}}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Professor email: {{professor.email}}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Reelection date: {{ professor.reelectionDate | date }}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Professor postal code: {{professor.city.cityCode}}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Title: {{professor.title.name}}
+      </span>
+    </div>
+
+  </div>
+
+</div>

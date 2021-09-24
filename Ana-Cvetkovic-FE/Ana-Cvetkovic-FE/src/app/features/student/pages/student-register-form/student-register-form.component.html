@@ -1,0 +1,10 @@
+<h3>Register exam for student {{student.firstName}} {{student.lastName}}</h3>
+
+<div class="mb-3 d-flex flex-column">
+  <label for="exam" class="form-label">Exam</label>
+  <select id="exam" class="form-select" formControlName="exam">
+    <option *ngFor="let exam of exams" [ngValue]="exam">
+      {{ exam.subject.name }}
+    </option>
+  </select>
+</div>

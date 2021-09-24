@@ -1,0 +1,128 @@
+<h3 *ngIf="edit">Edit Student</h3>
+<h3 *ngIf="!edit">Add Student</h3>
+
+<div class="col-lg-4 offset-lg-4 pb-5">
+
+  <form [formGroup]="studentForm" *ngIf="studentForm" (ngSubmit)="onSubmit()">
+
+    <div class="my-4">
+      <a routerLink="/student"><i class="bi bi-arrow-left-circle-fill"></i> Back to list</a>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="indexNumber" class="form-label">Index number</label>
+      <input id="indexNumber" class="form-control" formControlName="indexNumber" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('indexNumber').hasError('minLength')">
+        Length is ({{studentForm.get('indexNumber').errors.minLength.actualLength}}) less than required length
+        ({{studentForm.get('indexNumber').errors.minLength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="studentForm.get('indexNumber').hasError('maxLength')">
+        Length is ({{studentForm.get('indexNumber').errors.maxLength.actualLength}}) more than required length
+        ({{studentForm.get('indexNumber').errors.maxLength.requiredLength}})
+      </p>
+      <p class="alert alert-danger"
+        *ngIf="studentForm.get('indexNumber').hasError('required') && studentForm.get('indexNumber').touched">
+        Index number is required
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="indexYear" class="form-label">Index year</label>
+      <input id="indexYear" class="form-control" formControlName="indexYear" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('indexYear').hasError('min')">
+        Value is ({{studentForm.get('indexYear').errors.min.actualValue}}) less than required value
+        ({{studentForm.get('indexYear').errors.min.requiredValue}})
+      </p>
+      <p class="alert alert-danger" *ngIf="studentForm.get('indexYear').hasError('max')">
+        Value is ({{studentForm.get('indexYear').errors.max.actualValue}}) less than required value
+        ({{studentForm.get('indexYear').errors.max.requiredValue}})
+      </p>
+      <p class="alert alert-danger"
+        *ngIf="studentForm.get('indexYear').hasError('required') && studentForm.get('indexYear').touched">
+        Index year is required
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="firstName" class="form-label">First name</label>
+      <input id="firstName" class="form-control" formControlName="firstName" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('firstName').hasError('minlength')">
+        Length is ({{studentForm.get('firstName').errors.minlength.actualLength}}) less than required length
+        ({{studentForm.get('firstName').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="studentForm.get('firstName').hasError('maxLength')">
+        Length is ({{studentForm.get('firstName').errors.maxLength.actualLength}}) more than required length
+        ({{studentForm.get('firstName').errors.maxLength.requiredLength}})
+      </p>
+      <p class="alert alert-danger"
+        *ngIf="studentForm.get('firstName').hasError('required') && studentForm.get('firstName').touched">
+        First name is required
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="lastName" class="form-label">Last name</label>
+      <input id="lastName" class="form-control" formControlName="lastName" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('lastName').hasError('minlength')">
+        Length is ({{studentForm.get('lastName').errors.minlength.actualLength}}) less than required length
+        ({{studentForm.get('lastName').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="studentForm.get('lastName').hasError('maxLength')">
+        Length is ({{studentForm.get('lastName').errors.maxLength.actualLength}}) more than required length
+        ({{studentForm.get('lastName').errors.maxLength.requiredLength}})
+      </p>
+      <p class="alert alert-danger"
+        *ngIf="studentForm.get('lastName').hasError('required') && studentForm.get('lastName').touched">
+        Last name is required
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" class="form-control" formControlName="email" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('email').hasError('pattern')">
+        Email has incorrect form
+      </p>
+      <p class="alert alert-danger" *ngIf="studentForm.get('email').hasError('maxLength')">
+        Length is ({{studentForm.get('email').errors.maxLength.actualLength}}) more than required length
+        ({{studentForm.get('email').errors.maxLength.requiredLength}})
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="adress" class="form-label">Adress</label>
+      <input id="adress" class="form-control" formControlName="adress" />
+      <p class="alert alert-danger" *ngIf="studentForm.get('adress').hasError('minlength')">
+        Length is ({{studentForm.get('adress').errors.minlength.actualLength}}) less than required length
+        ({{studentForm.get('adress').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="studentForm.get('adress').hasError('maxLength')">
+        Length is ({{studentForm.get('adress').errors.maxLength.actualLength}}) less than required length
+        ({{studentForm.get('adress').errors.maxLength.requiredLength}})
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="city" class="form-label">Postal code</label>
+      <select id="city" class="form-select" formControlName="city">
+        <option *ngFor="let city of cities" [ngValue]="city">
+          {{ city.cityCode }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="currentYearOfStudy" class="form-label">Current year of study</label>
+      <input id="currentYearOfStudy" class="form-control" formControlName="currentYearOfStudy" />
+      <p class="alert alert-danger"
+        *ngIf="studentForm.get('currentYearOfStudy').hasError('required') && studentForm.get('currentYearOfStudy').touched">
+        Current year of study is required
+      </p>
+    </div>
+
+
+    <button class="btn btn-primary w-100 mt-3" type="submit" [disabled]="!studentForm.valid">Save</button>
+
+  </form>
+
+</div>

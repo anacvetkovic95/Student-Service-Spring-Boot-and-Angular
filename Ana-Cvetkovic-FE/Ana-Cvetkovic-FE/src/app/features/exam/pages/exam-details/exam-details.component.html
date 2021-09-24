@@ -1,0 +1,26 @@
+<a routerLink="/exam/exam-list" style="font-size: x-large;">Back to list</a>
+
+<div class="d-flex flex-column mt-3">
+
+  <div class="col-lg-6 col-md-8 border border-primary p-2 rounded">
+    <h3>Exam Details</h3>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Exam date: {{ exam.examDate | date }}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Exam period: {{ exam.examPeriod.name }}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Subject: {{ exam.subject.name }}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Professor: {{ exam.professor.firstName }} {{ exam.professor.lastName }}
+      </span>
+    </div>
+
+  </div>
+
+</div>

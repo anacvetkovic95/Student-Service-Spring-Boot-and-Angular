@@ -1,0 +1,29 @@
+<a routerLink="/student/student-list" style="font-size: x-large;">Back to list</a>
+
+<div class="d-flex flex-column mt-3">
+
+  <div class="col-lg-6 col-md-8 border border-primary p-2 rounded">
+    <h3>Student Details</h3>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Student name: {{student.firstName}} {{student.lastName}}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Student email: {{student.email}}
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-lg-4 col-md-6">
+        Student index: {{student.indexNumber}}/{{student.indexYear}}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Student postal code: {{student.city.cityCode}}
+      </span>
+      <span class="col-lg-8 col-md-6">
+        Current year of study: {{student.currentYearOfStudy}}
+      </span>
+    </div>
+
+  </div>
+
+</div>

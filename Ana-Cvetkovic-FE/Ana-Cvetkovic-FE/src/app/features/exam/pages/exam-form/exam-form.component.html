@@ -1,0 +1,57 @@
+<h3 *ngIf="edit">Edit Exam</h3>
+<h3 *ngIf="!edit">Add Exam</h3>
+
+<div class="col-lg-4 offset-lg-4 pb-5">
+
+  <form [formGroup]="examForm" *ngIf="examForm" (ngSubmit)="onSubmit()">
+
+    <div class="my-4">
+      <a routerLink="/exam"><i class="bi bi-arrow-left-circle-fill"></i> Back to list</a>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="examDate" class="form-label">Date:</label>
+      <input type="date" id="examDate" class="form-control" formControlName="examDate" />
+      <p class="alert alert-dexamPeriodFormanger" *ngIf="examForm.get('examDate').hasError('minlength')">
+        Length is ({{examPeriodForm.get('examDate').errors.minlength.actualLength}}) less than required length
+        ({{examPeriodForm.get('examDate').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger"
+        *ngIf="examForm.get('examDate').hasError('required') && examForm.get('examDate').touched">
+        Date is required
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="examPeriod" class="form-label">Exam period</label>
+      <select id="examPeriod" class="form-select" formControlName="examPeriod">
+        <option *ngFor="let examPeriod of examPerods" [ngValue]="examPeriod">
+          {{ examPeriod.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="subject" class="form-label">Subject</label>
+      <select id="subject" class="form-select" formControlName="subject" [(ngModel)]="selectedSubject"
+        (change)="onSelectSubject($event)">
+        <option *ngFor="let subject of subjects" [ngValue]="subject">
+          {{ subject.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="professor" class="form-label">Professor</label>
+      <select id="professor" class="form-select" formControlName="professor">
+        <option *ngFor="let professor of selectedSubject?.engagedProfessors" [ngValue]="professor">
+          {{ professor.firstName }} {{professor.lastName}}
+        </option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary w-100 mt-3" type="submit" [disabled]="!examForm.valid">Save</button>
+
+  </form>
+
+</div>

@@ -1,0 +1,134 @@
+<h3 *ngIf="edit">Edit Professor</h3>
+<h3 *ngIf="!edit">Add Professor</h3>
+
+<div class="col-lg-4 offset-lg-4 pb-5">
+
+  <form [formGroup]="professorForm" (ngSubmit)="onSubmit()">
+
+    <div class="my-4">
+      <a routerLink="/professor"><i class="bi bi-arrow-left-circle-fill"></i> Back to list</a>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="firstName" class="form-label">First name</label>
+      <input id="firstName" class="form-control" formControlName="firstName" />
+      <p class="alert alert-danger" *ngIf="professorForm.get('firstName').hasError('minlength')">
+        Length is ({{professorForm.get('firstName').errors.minlength.actualLength}}) less than required length
+        ({{professorForm.get('firstName').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="professorForm.get('firstName').hasError('maxlength')">
+        Length is ({{professorForm.get('firstName').errors.maxlength.actualLength}}) more than required length
+        ({{professorForm.get('firstName').errors.maxlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger"
+        *ngIf="professorForm.get('firstName').hasError('required') && professorForm.get('firstName').touched">
+        First name is requred
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="lastName" class="form-label">Last name</label>
+      <input id="lastName" class="form-control" formControlName="lastName" />
+      <p class="alert alert-danger" *ngIf="professorForm.get('lastName').hasError('minlength')">
+        Length is ({{professorForm.get('lastName').errors.minlength.actualLength}}) less than required length
+        ({{professorForm.get('lastName').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="professorForm.get('lastName').hasError('maxlength')">
+        Length is ({{professorForm.get('lastName').errors.maxlength.actualLength}}) more than required length
+        ({{professorForm.get('lastName').errors.maxlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger"
+        *ngIf="professorForm.get('lastName').hasError('required') && professorForm.get('lastName').touched">
+        Last name is requred
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" class="form-control" formControlName="email" />
+      <p class="alert alert-danger" *ngIf="professorForm.get('email').hasError('maxlength')">
+        Length is ({{professorForm.get('email').errors.maxlength.actualLength}}) more than required length
+        ({{professorForm.get('email').errors.maxlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="professorForm.get('email').hasError('pattern')">
+        Incorect form of email
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="phone" class="form-label">Phone</label>
+      <input id="phone" class="form-control" formControlName="phone" />
+      <p class="alert alert-danger" *ngIf="professorForm.get('phone').hasError('minlength')">
+        Length is ({{professorForm.get('phone').errors.minlength.actualLength}}) less than required length
+        ({{professorForm.get('phone').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="professorForm.get('phone').hasError('maxlength')">
+        Length is ({{professorForm.get('phone').errors.maxlength.actualLength}}) more than required length
+        ({{professorForm.get('phone').errors.maxlength.requiredLength}})
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="adress" class="form-label">Adress</label>
+      <input id="adress" class="form-control" formControlName="adress" />
+      <p class="alert alert-danger" *ngIf="professorForm.get('adress').hasError('minlength')">
+        Length is ({{professorForm.get('adress').errors.minlength.actualLength}}) less than required length
+        ({{professorForm.get('adress').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger" *ngIf="professorForm.get('adress').hasError('maxlength')">
+        Length is ({{professorForm.get('adress').errors.maxlength.actualLength}}) more than required length
+        ({{professorForm.get('adress').errors.maxlength.requiredLength}})
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="city" class="form-label">Postal code</label>
+      <select id="city" class="form-select" formControlName="city">
+        <option *ngFor="let city of cities" [ngValue]="city">
+          {{ city.cityCode }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="title" class="form-label">Title</label>
+      <select id="title" class="form-select" formControlName="title">
+        <option *ngFor="let title of titles" [ngValue]="title">
+          {{ title.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="reelectionDate">Reelection date: </label>
+      <input type="date" id="reelectionDate" name="reelectionDate" formControlName="reelectionDate"
+        class="form-control">
+    </div>
+
+    <hr>
+    <div class="mb-3 d-flex flex-column">
+      <button type="button" class="btn btn-outline-secondary" (click)="onAddSubject()">Add subject</button>
+    </div>
+
+    <div *ngIf="addSubject" class="mb-3 d-flex flex-column">
+      <label for="subject" class="form-label">Please select subject:</label>
+      <select id="subject" class="form-select" [ngModelOptions]="{ standalone:true }" [(ngModel)]="selectedSubject">
+        <option *ngFor="let subject of subjects" [ngValue]="subject">
+          {{ subject.name }}
+        </option>
+      </select>
+      <button class="btn btn-outline-secondary" (click)="addSelectedSubject()">Add</button>
+    </div>
+
+    <div class="d-flex flex-column w-25">
+      <span class="subject-chip" *ngFor="let professorSubject of professorSubjects;let i=index">
+        {{ professorSubject.name }}
+        <span (click)="removeSubjectAtIndex(i)" class="x">X</span>
+      </span>
+    </div>
+
+    <button class="btn btn-primary w-100 mt-3" type="submit" [disabled]="!professorForm.valid">Save</button>
+
+  </form>
+
+</div>

@@ -1,0 +1,47 @@
+<h3 *ngIf="edit">Edit Exam Period</h3>
+<h3 *ngIf="!edit">Add Exam Period</h3>
+
+<div class="col-lg-4 offset-lg-4 pb-5">
+
+  <form [formGroup]="examPeriodForm" *ngIf="examPeriodForm" (ngSubmit)="onSubmit()">
+
+    <div class="my-4">
+      <a routerLink="/exam-period"><i class="bi bi-arrow-left-circle-fill"></i> Back to list</a>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="name" class="form-label">Name</label>
+      <input id="name" class="form-control" formControlName="name" />
+      <p class="alert alert-dexamPeriodFormanger" *ngIf="examPeriodForm.get('name').hasError('minlength')">
+        Length is ({{examPeriodForm.get('name').errors.minlength.actualLength}}) less than required length
+        ({{examPeriodForm.get('name').errors.minlength.requiredLength}})
+      </p>
+      <p class="alert alert-danger"
+        *ngIf="examPeriodForm.get('name').hasError('required') && examPeriodForm.get('name').touched">
+        Name is required
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="active" class="form-label">Active</label>
+      <input type="boolean" id="active" class="form-control" formControlName="active" />
+      <p class="alert alert-danger"
+        *ngIf="examPeriodForm.get('active').hasError('required') && examPeriodForm.get('active').touched">
+      </p>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="startPeriod">Start period: </label>
+      <input type="date" id="startPeriod" name="startPeriod" formControlName="startPeriod" class="form-control">
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label for="endPeriod">End period: </label>
+      <input type="date" id="endPeriod" name="endPeriod" formControlName="endPeriod" class="form-control">
+    </div>
+
+    <button class="btn btn-primary w-100 mt-3" type="submit" [disabled]="!examPeriodForm.valid">Save</button>
+
+  </form>
+
+</div>
